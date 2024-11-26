@@ -1,4 +1,4 @@
-package com.example.samplecomposeapp
+package com.example.samplecomposeapp.textview
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

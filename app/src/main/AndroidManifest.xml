@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SampleComposeApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".textview.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.SampleComposeApp">
             <intent-filter>

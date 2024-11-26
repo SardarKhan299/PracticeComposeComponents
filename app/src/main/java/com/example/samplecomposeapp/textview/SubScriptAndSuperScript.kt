@@ -1,4 +1,4 @@
-package com.example.samplecomposeapp
+package com.example.samplecomposeapp.textview
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
