@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,14 +36,19 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 @Composable
 fun GoogleButtonCompose(text:String = "Sign Up With Goole",
                         loadingText:String="Creating Account...",
-                        icon:Painter= painterResource(R.drawable.ic_launcher_foreground)
+                        icon:Painter= painterResource(R.drawable.ic_launcher_foreground),
+                        shape:Shape = Shapes().medium,
+                        borderColour: Color = Color.LightGray,
+                        backgroundColor:Color = MaterialTheme.colorScheme.surface,
+                        progressIndicatorColor:Color = MaterialTheme.colorScheme.primary,
+                        onclicked: () -> Unit
 ){
     var clicked by remember { mutableStateOf(false) }
 
     Surface(onClick = { clicked = !clicked },
-        shape = Shapes().medium,
-        border = BorderStroke(width = 1.dp, color = Color.LightGray),
-        color = MaterialTheme.colorScheme.surface,
+        shape = shape,
+        border = BorderStroke(width = 1.dp, color = borderColour),
+        color = backgroundColor,
        )
     {
         Row(horizontalArrangement = Arrangement.Center,
@@ -59,9 +65,11 @@ fun GoogleButtonCompose(text:String = "Sign Up With Goole",
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = if(clicked) loadingText else text)
             if(clicked){
+                Spacer(modifier = Modifier.width(8.dp))
                 CircularProgressIndicator(modifier = Modifier.height(16.dp).width(16.dp),
                     strokeWidth = 2.dp,
-                    color = MaterialTheme.colorScheme.primary)
+                    color = progressIndicatorColor)
+                onclicked()
             }
         }
 
@@ -75,6 +83,8 @@ fun GoogleButtonCompose(text:String = "Sign Up With Goole",
 @Composable
 fun GoogleButtonPreview(){
     SampleComposeAppTheme {
-        GoogleButtonCompose()
+        GoogleButtonCompose(onclicked = {
+            println("Clicked")
+        })
     }
 }
