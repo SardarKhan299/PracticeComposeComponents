@@ -5,11 +5,14 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -39,6 +42,7 @@ import com.example.samplecomposeapp.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -56,14 +60,46 @@ class MainActivity : ComponentActivity() {
 
                 LazyColumn(contentPadding = PaddingValues(all = 32.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    itemsIndexed(items = getAllData){
-                        index, person->
-                        // for checking the index of visible item..//
-                        CustomItem(person = person)
-                    }
+//                    itemsIndexed(items = getAllData){
+//                        index, person->
+//                        // for checking the index of visible item..//
+//                        CustomItem(person = person)
+//                    }
 //                    items(items = getAllData){ person->
 //                        CustomItem(person = person)
 //                    }
+
+                    // items with keys..//
+//                    itemsIndexed(items = getAllData,
+//                        key = {
+//                            index, person->
+//                            // that is the unique key for parameter...//
+//                            person.id
+//                        }){
+//                            index, person->
+//                        // for checking the index of visible item..//
+//                        CustomItem(person = person)
+//                    }
+
+                    val sections = listOf("A", "B", "C", "D", "E", "F", "G")
+
+                        sections.forEach { section ->
+                            stickyHeader {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Color.LightGray)
+                                        .padding(12.dp),
+                                    text = "Section $section"
+                                )
+                            }
+                            items(10) {
+                                Text(
+                                    modifier = Modifier.padding(12.dp),
+                                    text = "Item $it from the section $section"
+                                )
+                            }
+                        }
 
                 }
 
