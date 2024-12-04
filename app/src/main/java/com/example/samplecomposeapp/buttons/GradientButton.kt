@@ -24,7 +24,9 @@ fun GradientButton(
     onClick: () -> Unit = {}
 ) {
 
-    Button(colors = ButtonDefaults.buttonColors(
+    Button(
+        modifier = modifier,
+        colors = ButtonDefaults.buttonColors(
         contentColor = Color.White
     ),
         contentPadding = PaddingValues(),
