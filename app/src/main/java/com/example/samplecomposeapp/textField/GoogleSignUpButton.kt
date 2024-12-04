@@ -7,7 +7,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -34,41 +33,54 @@ import com.example.samplecomposeapp.R
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 @Composable
-fun GoogleButtonCompose(text:String = "Sign Up With Goole",
-                        loadingText:String="Creating Account...",
-                        icon:Painter= painterResource(R.drawable.ic_launcher_foreground),
-                        shape:Shape = Shapes().medium,
-                        borderColour: Color = Color.LightGray,
-                        backgroundColor:Color = MaterialTheme.colorScheme.surface,
-                        progressIndicatorColor:Color = MaterialTheme.colorScheme.primary,
-                        onclicked: () -> Unit
-){
+fun GoogleButtonCompose(
+    text: String = "Sign Up With Goole",
+    loadingText: String = "Creating Account...",
+    icon: Painter = painterResource(R.drawable.ic_launcher_foreground),
+    shape: Shape = Shapes().medium,
+    borderColour: Color = Color.LightGray,
+    backgroundColor: Color = MaterialTheme.colorScheme.surface,
+    progressIndicatorColor: Color = MaterialTheme.colorScheme.primary,
+    onclicked: () -> Unit
+) {
     var clicked by remember { mutableStateOf(false) }
 
-    Surface(onClick = { clicked = !clicked },
+    Surface(
+        onClick = { clicked = !clicked },
         shape = shape,
         border = BorderStroke(width = 1.dp, color = borderColour),
         color = backgroundColor,
-       )
+    )
     {
-        Row(horizontalArrangement = Arrangement.Center,
+        Row(
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(start = 12.dp, end = 16.dp, top = 12.dp, bottom = 12.dp)
+            modifier = Modifier
+                .padding(start = 12.dp, end = 16.dp, top = 12.dp, bottom = 12.dp)
                 .height(50.dp)
                 .animateContentSize(
-                    animationSpec = tween(durationMillis = 300,
-                    easing = LinearOutSlowInEasing))
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = LinearOutSlowInEasing
+                    )
+                )
         )
-                    {
-            Icon(painter = icon, contentDescription = "Google Logo",
-                tint = Color.Unspecified)
+        {
+            Icon(
+                painter = icon, contentDescription = "Google Logo",
+                tint = Color.Unspecified
+            )
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = if(clicked) loadingText else text)
-            if(clicked){
+            Text(text = if (clicked) loadingText else text)
+            if (clicked) {
                 Spacer(modifier = Modifier.width(8.dp))
-                CircularProgressIndicator(modifier = Modifier.height(16.dp).width(16.dp),
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .height(16.dp)
+                        .width(16.dp),
                     strokeWidth = 2.dp,
-                    color = progressIndicatorColor)
+                    color = progressIndicatorColor
+                )
                 onclicked()
             }
         }
@@ -78,10 +90,9 @@ fun GoogleButtonCompose(text:String = "Sign Up With Goole",
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
-fun GoogleButtonPreview(){
+fun GoogleButtonPreview() {
     SampleComposeAppTheme {
         GoogleButtonCompose(onclicked = {
             println("Clicked")

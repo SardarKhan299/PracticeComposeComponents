@@ -25,14 +25,15 @@ import com.example.samplecomposeapp.R
 
 
 @Composable
-fun PasswordInputField(){
-    Column(modifier = Modifier.fillMaxSize(),
+fun PasswordInputField() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         var password by rememberSaveable { mutableStateOf("") }
         var passwordVisibility by remember { mutableStateOf(false) }
-        var icon = if(passwordVisibility)
+        var icon = if (passwordVisibility)
             painterResource(id = R.drawable.ic_launcher_foreground)
         else painterResource(id = R.drawable.ic_launcher_background)
         OutlinedTextField(
@@ -41,29 +42,30 @@ fun PasswordInputField(){
                 password = it
             },
             placeholder = {
-                Text("Enter password..." )
+                Text("Enter password...")
             },
             trailingIcon = {
                 IconButton(onClick = {
                     passwordVisibility = !passwordVisibility
                 }) {
-                    Icon(painter = icon,
-                        contentDescription = "Image")
+                    Icon(
+                        painter = icon,
+                        contentDescription = "Image"
+                    )
                 }
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = if(passwordVisibility) VisualTransformation.None
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
             else PasswordVisualTransformation()
-            )
+        )
 
 
     }
 }
 
 
-
 @Composable
 @Preview
-fun CoilImageLoadingPreview(){
+fun CoilImageLoadingPreview() {
     PasswordInputField()
 }

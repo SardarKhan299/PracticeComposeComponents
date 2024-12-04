@@ -20,26 +20,30 @@ import coil3.transform.RoundedCornersTransformation
 
 
 @Composable
-fun CoilImageLoading(){
-    Box(modifier = Modifier
-        .height(150.dp)
-        .width(150.dp),
-        contentAlignment = Alignment.Center){
-        AsyncImage(model = ImageRequest.Builder(context = LocalContext.current)
-            .data("https://avatars.githubusercontent.com/u/14994036?v=4")
-            .crossfade(true)
-            .transformations(
-                RoundedCornersTransformation(50f)
-            )
-            .build(),
+fun CoilImageLoading() {
+    Box(
+        modifier = Modifier
+            .height(150.dp)
+            .width(150.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data("https://avatars.githubusercontent.com/u/14994036?v=4")
+                .crossfade(true)
+                .transformations(
+                    RoundedCornersTransformation(50f)
+                )
+                .build(),
             contentDescription = "Profile Image",
             contentScale = ContentScale.Crop,
-            modifier = Modifier.clip(CircleShape))
+            modifier = Modifier.clip(CircleShape)
+        )
     }
 }
 
 @Composable
 @Preview
-fun CoilImageLoadingPreview(){
+fun CoilImageLoadingPreview() {
     CoilImageLoading()
 }

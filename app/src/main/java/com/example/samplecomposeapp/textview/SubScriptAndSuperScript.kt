@@ -15,33 +15,39 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 
 @Composable
-fun SuperScriptText(normalText:String,
-                    superText:String){
+fun SuperScriptText(
+    normalText: String,
+    superText: String
+) {
     // Build Annotated String is used to Style Each Character of a string..//
-Text(buildAnnotatedString {
-    withStyle(style =
-    SpanStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize,)
-    ){
-        append(normalText)
-    }
+    Text(buildAnnotatedString {
+        withStyle(
+            style =
+            SpanStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize)
+        ) {
+            append(normalText)
+        }
 
-    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.bodySmall.fontSize,
-        fontWeight = FontWeight.Normal,
-        // to shift it to subscript change this baseline shift to subscript.
-        baselineShift = androidx.compose.ui.text.style.BaselineShift.Superscript
-        )){
-        append(superText)
-    }
-})
+        withStyle(
+            style = SpanStyle(
+                fontSize = MaterialTheme.typography.bodySmall.fontSize,
+                fontWeight = FontWeight.Normal,
+                // to shift it to subscript change this baseline shift to subscript.
+                baselineShift = androidx.compose.ui.text.style.BaselineShift.Superscript
+            )
+        ) {
+            append(superText)
+        }
+    })
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewComposeable(){
+fun PreviewComposeable() {
     SampleComposeAppTheme {
         Column(modifier = Modifier.fillMaxSize()) {
-            SuperScriptText("Sardar","Khan")
+            SuperScriptText("Sardar", "Khan")
         }
     }
 }

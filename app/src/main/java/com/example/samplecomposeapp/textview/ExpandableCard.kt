@@ -36,28 +36,31 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 
 @Composable
-fun ExpandableCard(title:String,
-                   titleFontSize: TextUnit = MaterialTheme.typography.bodyLarge.fontSize,
-                   titleFontWeight: FontWeight = FontWeight.Bold,
-                   descriptionText:String,
-                   descriptionFontSize: TextUnit = MaterialTheme.typography.bodySmall.fontSize,
-                   descriptionFontWeight: FontWeight = FontWeight.Normal,
-                   descriptionMaxLines:Int = 4,
-                   cardShape: CornerBasedShape = Shapes().medium,
-                   padding: Dp = 12.dp,
-                   durations: Int = 300,
+fun ExpandableCard(
+    title: String,
+    titleFontSize: TextUnit = MaterialTheme.typography.bodyLarge.fontSize,
+    titleFontWeight: FontWeight = FontWeight.Bold,
+    descriptionText: String,
+    descriptionFontSize: TextUnit = MaterialTheme.typography.bodySmall.fontSize,
+    descriptionFontWeight: FontWeight = FontWeight.Normal,
+    descriptionMaxLines: Int = 4,
+    cardShape: CornerBasedShape = Shapes().medium,
+    padding: Dp = 12.dp,
+    durations: Int = 300,
 
-                   ){
+    ) {
     var expanded by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
-        targetValue = if(expanded) 180f else 0f
+        targetValue = if (expanded) 180f else 0f
     )
 
     Card(modifier = Modifier
         .fillMaxWidth()
         .animateContentSize(
-            tween(durationMillis = if(expanded) durations else durations*4 ,
-                easing = LinearOutSlowInEasing)
+            tween(
+                durationMillis = if (expanded) durations else durations * 4,
+                easing = LinearOutSlowInEasing
+            )
         ),
         shape = cardShape,
         onClick = {
@@ -66,33 +69,40 @@ fun ExpandableCard(title:String,
 
     ) {
 
-        Column(modifier = Modifier.fillMaxWidth()
-            .padding(padding)) {
-            Row(verticalAlignment = Alignment.CenterVertically){
-                Text(text = title,
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(padding)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = title,
                     modifier = Modifier.weight(6f),
                     fontSize = titleFontSize,
                     fontWeight = titleFontWeight,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
-                    )
+                )
 
                 IconButton(modifier = Modifier
-                    .weight(1f,true)
+                    .weight(1f, true)
                     .alpha(1.toFloat())
-                    .rotate(rotationState)
-                    ,
+                    .rotate(rotationState),
                     onClick = {
                         expanded = !expanded
                     }
-                    ) {
-                    Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "Image Drop Down")
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
+                        contentDescription = "Image Drop Down"
+                    )
                 }
 
             }
 
-            if(expanded){
-                Text(text = descriptionText,
+            if (expanded) {
+                Text(
+                    text = descriptionText,
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = descriptionFontSize,
                     fontWeight = descriptionFontWeight,
@@ -100,17 +110,19 @@ fun ExpandableCard(title:String,
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            
+
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun MyPreview(){
+fun MyPreview() {
     SampleComposeAppTheme {
-        ExpandableCard(title = "My Title", descriptionText = " Some long text with some long description " +
-                "                        Some text here as well to handle the description  "+
-                "                        lets test and run the app..")
+        ExpandableCard(
+            title = "My Title", descriptionText = " Some long text with some long description " +
+                    "                        Some text here as well to handle the description  " +
+                    "                        lets test and run the app.."
+        )
     }
 }

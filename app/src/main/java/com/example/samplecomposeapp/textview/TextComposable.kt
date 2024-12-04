@@ -25,10 +25,11 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 
 @Composable
-fun CustomizeText(){
-    Text(text = stringResource(R.string.app_name), modifier = Modifier
-        .background(Color.Blue)
-        .padding(16.dp),
+fun CustomizeText() {
+    Text(
+        text = stringResource(R.string.app_name), modifier = Modifier
+            .background(Color.Blue)
+            .padding(16.dp),
         color = Color.White,
         fontSize = MaterialTheme.typography.bodyLarge.fontSize,
         fontStyle = FontStyle.Italic,
@@ -38,13 +39,13 @@ fun CustomizeText(){
 }
 
 @Composable
-fun CustomizeText2(){
+fun CustomizeText2() {
     Text(
         buildAnnotatedString {
-            withStyle(style = SpanStyle(color = Color.Red)){
+            withStyle(style = SpanStyle(color = Color.Red)) {
                 append("S")
             }
-            withStyle(style = SpanStyle(color = Color.Blue)){
+            withStyle(style = SpanStyle(color = Color.Blue)) {
                 append("A")
             }
             append("S")
@@ -55,21 +56,21 @@ fun CustomizeText2(){
 }
 
 @Composable
-fun CustomizeText3(){
-        SelectionContainer {
-            Column {
-                Text(text = "Hello from Android")
-                DisableSelection {
-                    Text(text = "Hello from Android 1")
-                }
-                Text(text = "Hello from Android 2")
+fun CustomizeText3() {
+    SelectionContainer {
+        Column {
+            Text(text = "Hello from Android")
+            DisableSelection {
+                Text(text = "Hello from Android 1")
             }
+            Text(text = "Hello from Android 2")
         }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview(){
+fun DefaultPreview() {
     SampleComposeAppTheme {
         Column(modifier = Modifier.fillMaxSize()) {
             CustomizeText()

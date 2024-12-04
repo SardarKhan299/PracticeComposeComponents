@@ -22,17 +22,19 @@ fun GradientButton(
     gradient: Brush,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
-){
+) {
 
     Button(colors = ButtonDefaults.buttonColors(
-        contentColor = Color.White),
+        contentColor = Color.White
+    ),
         contentPadding = PaddingValues(),
         onClick = { onClick() }) {
-        Box(modifier = Modifier
-            .background(gradient)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+        Box(
+            modifier = Modifier
+                .background(gradient)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             contentAlignment = Alignment.Center
-        ){
+        ) {
             Text(text = text, color = textColor)
         }
     }
@@ -42,12 +44,14 @@ fun GradientButton(
 
 @Composable
 @Preview
-fun GradientButtonPreview(){
-    GradientButton("Click Me",
+fun GradientButtonPreview() {
+    GradientButton(
+        "Click Me",
         Color.Blue, gradient = Brush.horizontalGradient(
             colors = listOf(
                 Color(0x00000000),
                 Color(0x00000000)
             )
-        ))
+        )
+    )
 }

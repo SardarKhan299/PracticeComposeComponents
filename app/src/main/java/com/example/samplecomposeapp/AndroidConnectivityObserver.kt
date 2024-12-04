@@ -1,22 +1,22 @@
 package com.example.samplecomposeapp
 
 import android.content.Context
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.util.Log
 import kotlinx.coroutines.channels.awaitClose
-import kotlin.math.log
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 
-class AndroidConnectivityObserver(context: Context):ConnectivityObserver {
+class AndroidConnectivityObserver(context: Context) : ConnectivityObserver {
 
-    private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)!! as ConnectivityManager
+    private val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE)!! as ConnectivityManager
     override val isConnected: Flow<Boolean>
         get() = callbackFlow {
-            val callback = object :NetworkCallback(){
+            val callback = object : NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
                     Log.d(AndroidConnectivityObserver::class.simpleName, ": onAvailable")
@@ -46,7 +46,8 @@ class AndroidConnectivityObserver(context: Context):ConnectivityObserver {
                 ) {
                     super.onCapabilitiesChanged(network, networkCapabilities)
                     Log.d(AndroidConnectivityObserver::class.simpleName, ": onCapability Change")
-                    val connected = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                    val connected =
+                        networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
                     trySend(connected)
                 }
             }

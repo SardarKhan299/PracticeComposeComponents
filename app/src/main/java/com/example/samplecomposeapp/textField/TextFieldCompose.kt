@@ -27,9 +27,10 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 
 @Composable
-fun TextFieldCompose(){
+fun TextFieldCompose() {
 
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -74,11 +75,9 @@ fun TextFieldCompose(){
 }
 
 
-
-
 @Composable
 @Preview
-fun TextFieldPreview(){
+fun TextFieldPreview() {
     SampleComposeAppTheme {
         TextFieldCompose()
     }

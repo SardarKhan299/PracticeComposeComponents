@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +16,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,7 +26,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.samplecomposeapp.AndroidConnectivityObserver
 import com.example.samplecomposeapp.ConnectivityViewModel
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
@@ -40,17 +37,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SampleComposeAppTheme{
-                val viewmodel = viewModel <ConnectivityViewModel>{
+            SampleComposeAppTheme {
+                val viewmodel = viewModel<ConnectivityViewModel> {
                     ConnectivityViewModel(
-                    connectivityObserver = AndroidConnectivityObserver(applicationContext)
+                        connectivityObserver = AndroidConnectivityObserver(applicationContext)
                     )
                 }
                 val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box (modifier = Modifier.fillMaxSize().padding(innerPadding),
-                        contentAlignment = Alignment.Center){
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
+                        contentAlignment = Alignment.Center
+                    ) {
                         Text(text = "Connected: $isConnected")
                     }
                 }
@@ -62,7 +63,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     var myState = remember { mutableStateOf(false) }
-    Log.e(MainActivity::class.simpleName, "Greeting: ${myState.value}", )
+    Log.e(MainActivity::class.simpleName, "Greeting: ${myState.value}")
     Button(onClick = {
         myState.value = !myState.value
     }) {
@@ -70,28 +71,37 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name! state is ${myState.value}",
             modifier = modifier
         )
-        Log.e(MainActivity::class.simpleName, "Greeting: Text ${myState.value}", )
+        Log.e(MainActivity::class.simpleName, "Greeting: Text ${myState.value}")
     }
 
 }
 
 @Composable
-fun CustomText(text:String){
-    Text(text = text,
-        style = Typography.headlineMedium)
+fun CustomText(text: String) {
+    Text(
+        text = text,
+        style = Typography.headlineMedium
+    )
 }
 
 @Composable
-fun ColumnScope.CustomItem(weight: Float,color: Color){
-    Surface(modifier = Modifier.padding(12.dp)
-        .width(300.dp).height(50.dp).weight(weight),
-        color = color) {
+fun ColumnScope.CustomItem(weight: Float, color: Color) {
+    Surface(
+        modifier = Modifier
+            .padding(12.dp)
+            .width(300.dp)
+            .height(50.dp)
+            .weight(weight),
+        color = color
+    ) {
         CustomText("Sardar")
     }
 }
 
-@Preview(showBackground = true,
-    name = "First Preview")
+@Preview(
+    showBackground = true,
+    name = "First Preview"
+)
 @Composable
 fun GreetingPreview() {
     SampleComposeAppTheme {
