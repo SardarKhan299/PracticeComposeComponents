@@ -1,16 +1,21 @@
-package com.example.samplecomposeapp.textview
+package com.example.samplecomposeapp
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -26,8 +31,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.samplecomposeapp.AndroidConnectivityObserver
-import com.example.samplecomposeapp.ConnectivityViewModel
+import com.example.samplecomposeapp.list.CustomItem
+import com.example.samplecomposeapp.list.repository.PersonRepository
+import com.example.samplecomposeapp.textview.BoxPractice
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 
@@ -45,16 +51,34 @@ class MainActivity : ComponentActivity() {
                 }
                 val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
 
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "Connected: $isConnected")
+                val personRepository = PersonRepository()
+                val getAllData = personRepository.getAllData()
+
+                LazyColumn(contentPadding = PaddingValues(all = 32.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    itemsIndexed(items = getAllData){
+                        index, person->
+                        // for checking the index of visible item..//
+                        CustomItem(person = person)
                     }
+//                    items(items = getAllData){ person->
+//                        CustomItem(person = person)
+//                    }
+
                 }
+
+
+                // for checking the state of network connection..//
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    Box(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .padding(innerPadding),
+//                        contentAlignment = Alignment.Center
+//                    ) {
+//                        Text(text = "Connected: $isConnected")
+//                    }
+//                }
             }
         }
     }
