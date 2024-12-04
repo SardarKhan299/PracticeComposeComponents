@@ -46,7 +46,7 @@ fun GradientButton(
 @Preview
 fun GradientButtonPreview() {
     GradientButton(
-        "Click Me",
+        "Hit Me",
         Color.Blue, gradient = Brush.horizontalGradient(
             colors = listOf(
                 Color(0x00000000),
