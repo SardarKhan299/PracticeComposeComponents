@@ -18,17 +18,23 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun BoxPractice() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
+    ) {
         Box(
             modifier = Modifier
                 .background(Color.Blue)
                 .padding(12.dp)
-                .verticalScroll(rememberScrollState()), contentAlignment = Alignment.Center
+                .verticalScroll(rememberScrollState()),
+            contentAlignment = Alignment.Center
         ) {
-            Box(modifier = Modifier
-                .background(Color.Red)
-                .width(40.dp)
-                .height(40.dp))
+            Box(
+                modifier = Modifier
+                    .background(Color.Red)
+                    .width(40.dp)
+                    .height(40.dp)
+            )
             Text(text = "I love Android", fontSize = 45.sp)
         }
     }
