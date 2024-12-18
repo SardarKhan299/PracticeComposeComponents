@@ -25,6 +25,7 @@ class AndroidConnectivityObserver(context: Context) : ConnectivityObserver {
 
                 override fun onLosing(network: Network, maxMsToLive: Int) {
                     super.onLosing(network, maxMsToLive)
+                    
                     Log.d(AndroidConnectivityObserver::class.simpleName, ": onLosing")
                 }
 
