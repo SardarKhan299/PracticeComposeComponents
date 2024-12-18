@@ -42,24 +42,26 @@ import com.example.samplecomposeapp.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalFoundationApi::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SampleComposeAppTheme {
-                val viewmodel = viewModel<ConnectivityViewModel> {
-                    ConnectivityViewModel(
-                        connectivityObserver = AndroidConnectivityObserver(applicationContext)
-                    )
-                }
-                val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
+  @OptIn(ExperimentalFoundationApi::class)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+    setContent {
+      SampleComposeAppTheme {
+        val viewmodel = viewModel<ConnectivityViewModel> {
+          ConnectivityViewModel(
+            connectivityObserver = AndroidConnectivityObserver(applicationContext)
+          )
+        }
+        val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
 
-                val personRepository = PersonRepository()
-                val getAllData = personRepository.getAllData()
+        val personRepository = PersonRepository()
+        val getAllData = personRepository.getAllData()
 
-                LazyColumn(contentPadding = PaddingValues(all = 32.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        LazyColumn(
+          contentPadding = PaddingValues(all = 32.dp),
+          verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
 //                    itemsIndexed(items = getAllData){
 //                        index, person->
 //                        // for checking the index of visible item..//
@@ -69,7 +71,7 @@ class MainActivity : ComponentActivity() {
 //                        CustomItem(person = person)
 //                    }
 
-                    // items with keys..//
+          // items with keys..//
 //                    itemsIndexed(items = getAllData,
 //                        key = {
 //                            index, person->
@@ -81,30 +83,31 @@ class MainActivity : ComponentActivity() {
 //                        CustomItem(person = person)
 //                    }
 
-                    val sections = listOf("A", "B", "C", "D", "E", "F", "G")
+          // sticky header example with lazy Column....//
+          val sections = listOf("A", "B", "C", "D", "E", "F", "G")
 
-                        sections.forEach { section ->
-                            stickyHeader {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .background(Color.LightGray)
-                                        .padding(12.dp),
-                                    text = "Section $section"
-                                )
-                            }
-                            items(10) {
-                                Text(
-                                    modifier = Modifier.padding(12.dp),
-                                    text = "Item $it from the section $section"
-                                )
-                            }
-                        }
+          sections.forEach { section ->
+            stickyHeader {
+              Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.LightGray)
+                    .padding(12.dp),
+                text = "Section $section"
+              )
+            }
+            items(10) {
+              Text(
+                modifier = Modifier.padding(12.dp),
+                text = "Item $it from the section $section"
+              )
+            }
+          }
 
-                }
+        }
 
 
-                // for checking the state of network connection..//
+        // for checking the state of network connection..//
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Box(
 //                        modifier = Modifier
@@ -115,56 +118,56 @@ class MainActivity : ComponentActivity() {
 //                        Text(text = "Connected: $isConnected")
 //                    }
 //                }
-            }
-        }
+      }
     }
+  }
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var myState = remember { mutableStateOf(false) }
-    Log.e(MainActivity::class.simpleName, "Greeting: ${myState.value}")
-    Button(onClick = {
-        myState.value = !myState.value
-    }) {
-        Text(
-            text = "Hello $name! state is ${myState.value}",
-            modifier = modifier
-        )
-        Log.e(MainActivity::class.simpleName, "Greeting: Text ${myState.value}")
-    }
+  var myState = remember { mutableStateOf(false) }
+  Log.e(MainActivity::class.simpleName, "Greeting: ${myState.value}")
+  Button(onClick = {
+    myState.value = !myState.value
+  }) {
+    Text(
+      text = "Hello $name! state is ${myState.value}",
+      modifier = modifier
+    )
+    Log.e(MainActivity::class.simpleName, "Greeting: Text ${myState.value}")
+  }
 
 }
 
 @Composable
 fun CustomText(text: String) {
-    Text(
-        text = text,
-        style = Typography.headlineMedium
-    )
+  Text(
+    text = text,
+    style = Typography.headlineMedium
+  )
 }
 
 @Composable
 fun ColumnScope.CustomItem(weight: Float, color: Color) {
-    Surface(
-        modifier = Modifier
-            .padding(12.dp)
-            .width(300.dp)
-            .height(50.dp)
-            .weight(weight),
-        color = color
-    ) {
-        CustomText("Sardar")
-    }
+  Surface(
+    modifier = Modifier
+        .padding(12.dp)
+        .width(300.dp)
+        .height(50.dp)
+        .weight(weight),
+    color = color
+  ) {
+    CustomText("Sardar")
+  }
 }
 
 @Preview(
-    showBackground = true,
-    name = "First Preview"
+  showBackground = true,
+  name = "First Preview"
 )
 @Composable
 fun GreetingPreview() {
-    SampleComposeAppTheme {
+  SampleComposeAppTheme {
 
 //        Column(modifier = Modifier.fillMaxSize().height(500.dp),
 //            horizontalAlignment = Alignment.CenterHorizontally,
@@ -176,7 +179,7 @@ fun GreetingPreview() {
 //
 //        }
 
-        BoxPractice()
+    BoxPractice()
 
-    }
+  }
 }
