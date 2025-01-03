@@ -1,16 +1,25 @@
 package com.example.samplecomposeapp.list
 
 import android.util.Log
+import android.view.Display.Mode
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,6 +53,62 @@ fun ListPractice(){
 }
 
 @Composable
+fun ListPractice2(){
+  var name by remember {
+    mutableStateOf("")
+  }
+
+  var names by remember {
+    mutableStateOf(listOf(""))
+  }
+
+  Column (
+    modifier = Modifier
+    .fillMaxSize()
+      .padding(16.dp)
+  ) {
+
+    Row(
+      modifier = Modifier.fillMaxWidth()
+    ) {
+      OutlinedTextField(
+        value = name,
+        onValueChange = { text->
+          name = text
+        },
+        modifier = Modifier.weight(1f)
+      )
+
+      Spacer(modifier = Modifier.width(16.dp))
+
+      Button(onClick = {
+        if(name.isNotEmpty())
+          names = names + name
+          name = ""
+      }) {
+        Text(text = "Add")
+      }
+
+    }
+
+    LazyColumn {
+      items(names){ currentName->
+        Text(text = currentName,
+          modifier = Modifier.fillMaxWidth()
+            .padding(16.dp))
+        HorizontalDivider()
+      }
+
+    }
+
+  }
+
+
+
+
+}
+
+@Composable
 fun StatePractice(){
   Log.d("ListPractice", ": State Practice ");
   Column(
@@ -73,6 +138,7 @@ fun StatePractice(){
 fun ListPracticePreview(){
   SampleComposeAppTheme {
     //ListPractice()
-    StatePractice()
+    //StatePractice()
+    ListPractice2()
   }
 }
