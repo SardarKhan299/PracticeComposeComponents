@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.samplecomposeapp.R
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
@@ -68,6 +70,35 @@ fun CustomizeText3() {
     }
 }
 
+@Composable
+fun GreetingText(name: String){
+    Text(
+        text = "Hello. $name!",
+        color = Color.Blue,
+        fontSize = 30.sp,
+        modifier = Modifier
+            .background(Color.Red)
+            .padding(16.dp)
+            .background(Color.Green)
+            .padding(8.dp)
+            .background(Color.Black)
+    )
+}
+
+@Composable
+fun TextOnEachOther(name: String){
+    Text(
+        text = "Hello. $name!",
+        color = Color.Blue,
+        fontSize = 30.sp,
+    )
+    Text(
+        text = "Some Other text",
+        color = Color.Blue,
+        fontSize = 30.sp,
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -76,6 +107,8 @@ fun DefaultPreview() {
             CustomizeText()
             CustomizeText2()
             CustomizeText3()
+            GreetingText("Sardar Khan")
+            TextOnEachOther("Sardar Khan")
         }
     }
 }
