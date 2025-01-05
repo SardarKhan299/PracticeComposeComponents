@@ -1,4 +1,4 @@
-package com.example.samplecomposeapp.list
+package com.example.samplecomposeapp.list.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
