@@ -53,26 +53,48 @@ fun RowColumnDemo(modifier: Modifier = Modifier) {
 //    )
 //  }
 
-  Row (
-    modifier = Modifier.fillMaxSize(),
-    verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.spacedBy(
-      space = 20.dp, alignment = Alignment.CenterHorizontally)
-  ){
-    Text(
-      text = "Hello World",
-      fontSize = 40.sp,
-      color = Color.Blue,
-      modifier = Modifier
-        .width(120.dp)
-        .alignBy(LastBaseline)
-    )
-    Text(text = "Hello World 1..",
-      fontSize = 20.sp,
-      color = Color.Red,
-      modifier = Modifier.alignByBaseline()
+//  Row (
+//    modifier = Modifier.fillMaxSize(),
+//    verticalAlignment = Alignment.CenterVertically,
+//    horizontalArrangement = Arrangement.spacedBy(
+//      space = 20.dp, alignment = Alignment.CenterHorizontally)
+//  ){
+//    Text(
+//      text = "Hello World",
+//      fontSize = 40.sp,
+//      color = Color.Blue,
+//      modifier = Modifier
+//        .width(120.dp)
+//        .alignBy(LastBaseline)
+//    )
+//    Text(text = "Hello World 1..",
+//      fontSize = 20.sp,
+//      color = Color.Red,
+//      modifier = Modifier.alignByBaseline()
+//
+//      )
+//  }
 
-      )
+    Column (
+    modifier = Modifier.fillMaxSize(),
+    horizontalAlignment = Alignment.CenterHorizontally,
+      verticalArrangement = Arrangement.SpaceEvenly
+    ){
+    Box(
+      modifier = Modifier.size(100.dp)
+        .background(Color.Red)
+        .weight(1f)
+    )
+    Box(
+      modifier = Modifier.size(100.dp)
+        .background(Color.Blue)
+        .weight(0.5f)
+    )
+    Box(
+      modifier = Modifier.size(100.dp)
+        .background(Color.Green)
+        .weight(1f)
+    )
   }
 }
 
