@@ -1,5 +1,6 @@
 package com.example.samplecomposeapp.list.lazyColumn
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,11 +14,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LazyColumnPractice(modifier: Modifier = Modifier) {
   LazyColumn (
     modifier = Modifier.fillMaxSize()
   ){
+    items(100){ i->
+      Text("item $i")
+    }
+
+    stickyHeader {
+      Text(text = "Sticky Header..",
+        modifier = Modifier.fillMaxSize()
+          .background(Color.Green)
+      )
+    }
+    items(100){ i->
+      Text("item $i")
+    }
+
+    stickyHeader {
+      Text(text = "Sticky Header..",
+        modifier = Modifier.fillMaxSize()
+          .background(Color.Green)
+      )
+    }
     items(100){ i->
       Text("item $i")
     }
@@ -29,6 +51,9 @@ fun LazyColumnPractice(modifier: Modifier = Modifier) {
           .background(Color.Red)
       )
     }
+
+
+
   }
 }
 
