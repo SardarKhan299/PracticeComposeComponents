@@ -1,5 +1,6 @@
 package com.example.samplecomposeapp.customeComponent
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
@@ -84,6 +85,13 @@ fun CustomComponent(canvasSize: Dp = 300.dp,
     animationSpec = tween(1000)
   )
 
+  val animatedBigTextColor by animateColorAsState(
+    targetValue = if(allowedIndicatorValue == 0)
+      MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+    else
+      bigTextColor
+  )
+
   Column(modifier = Modifier
     .size(canvasSize)
     .drawBehind {
@@ -105,7 +113,7 @@ fun CustomComponent(canvasSize: Dp = 300.dp,
   ) {
     EmbeddedElements(
       bigText = receivedValue.toString(),
-      bigTextColor = bigTextColor,
+      bigTextColor = animatedBigTextColor,
       bigTextSuffix = bigTextSuffix,
       bigTextFontSize = bigTextFontSize,
       smallText = smallText,
