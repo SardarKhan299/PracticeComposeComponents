@@ -89,7 +89,8 @@ fun CustomComponent(canvasSize: Dp = 300.dp,
     targetValue = if(allowedIndicatorValue == 0)
       MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
     else
-      bigTextColor
+      bigTextColor,
+    animationSpec = tween(1000)
   )
 
   Column(modifier = Modifier
