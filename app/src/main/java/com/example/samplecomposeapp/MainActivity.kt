@@ -28,12 +28,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.samplecomposeapp.list.repository.PersonRepository
+import com.example.samplecomposeapp.navigation.SetupNavGraph
 import com.example.samplecomposeapp.textview.BoxPractice
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 
 class MainActivity : ComponentActivity() {
+
+  lateinit var navController: NavHostController
 
   @OptIn(ExperimentalFoundationApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +46,10 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       SampleComposeAppTheme {
+        navController = rememberNavController()
+        SetupNavGraph(
+          navController = navController
+        )
         val viewmodel = viewModel<ConnectivityViewModel> {
           ConnectivityViewModel(
             connectivityObserver = AndroidConnectivityObserver(applicationContext)
@@ -51,53 +60,53 @@ class MainActivity : ComponentActivity() {
         val personRepository = PersonRepository()
         val getAllData = personRepository.getAllData()
 
-        LazyColumn(
-          contentPadding = PaddingValues(all = 32.dp),
-          verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-//                    itemsIndexed(items = getAllData){
-//                        index, person->
-//                        // for checking the index of visible item..//
-//                        CustomItem(person = person)
-//                    }
-//                    items(items = getAllData){ person->
-//                        CustomItem(person = person)
-//                    }
-
-          // items with keys..//
-//                    itemsIndexed(items = getAllData,
-//                        key = {
-//                            index, person->
-//                            // that is the unique key for parameter...//
-//                            person.id
-//                        }){
-//                            index, person->
-//                        // for checking the index of visible item..//
-//                        CustomItem(person = person)
-//                    }
-
-          // sticky header example with lazy Column....//
-          val sections = listOf("A", "B", "C", "D", "E", "F", "G")
-
-          sections.forEach { section ->
-            stickyHeader {
-              Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.LightGray)
-                    .padding(12.dp),
-                text = "Section $section"
-              )
-            }
-            items(10) {
-              Text(
-                modifier = Modifier.padding(12.dp),
-                text = "Item $it from the section $section"
-              )
-            }
-          }
-
-        }
+//        LazyColumn(
+//          contentPadding = PaddingValues(all = 32.dp),
+//          verticalArrangement = Arrangement.spacedBy(12.dp)
+//        ) {
+////                    itemsIndexed(items = getAllData){
+////                        index, person->
+////                        // for checking the index of visible item..//
+////                        CustomItem(person = person)
+////                    }
+////                    items(items = getAllData){ person->
+////                        CustomItem(person = person)
+////                    }
+//
+//          // items with keys..//
+////                    itemsIndexed(items = getAllData,
+////                        key = {
+////                            index, person->
+////                            // that is the unique key for parameter...//
+////                            person.id
+////                        }){
+////                            index, person->
+////                        // for checking the index of visible item..//
+////                        CustomItem(person = person)
+////                    }
+//
+//          // sticky header example with lazy Column....//
+//          val sections = listOf("A", "B", "C", "D", "E", "F", "G")
+//
+//          sections.forEach { section ->
+//            stickyHeader {
+//              Text(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .background(Color.LightGray)
+//                    .padding(12.dp),
+//                text = "Section $section"
+//              )
+//            }
+//            items(10) {
+//              Text(
+//                modifier = Modifier.padding(12.dp),
+//                text = "Item $it from the section $section"
+//              )
+//            }
+//          }
+//
+//        }
 
 
         // for checking the state of network connection..//
