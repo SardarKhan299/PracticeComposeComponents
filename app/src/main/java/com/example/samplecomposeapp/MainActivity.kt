@@ -46,10 +46,14 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       SampleComposeAppTheme {
+
+        // for navigation..//
         navController = rememberNavController()
         SetupNavGraph(
           navController = navController
         )
+
+        // For Observe Internet Connectivity...//
         val viewmodel = viewModel<ConnectivityViewModel> {
           ConnectivityViewModel(
             connectivityObserver = AndroidConnectivityObserver(applicationContext)
