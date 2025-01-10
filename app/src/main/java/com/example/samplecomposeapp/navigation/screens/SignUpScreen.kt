@@ -20,7 +20,7 @@ fun SignUpScreen(navController: NavController) {
   ){
     Text(
       modifier = Modifier.clickable {
-
+        navController.popBackStack()
       },
       text = "SignUp Screen",
       color = MaterialTheme.colorScheme.primary,
