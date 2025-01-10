@@ -1,4 +1,4 @@
-package com.example.samplecomposeapp.navigation
+package com.example.samplecomposeapp.navigation.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.samplecomposeapp.navigation.Screen
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -24,7 +25,8 @@ fun HomeScreen(navController: NavController) {
         navController.navigate(route = Screen.Detail.passIdAndName(
           id = 1,
           name = "sardar"
-        ))
+        )
+        )
       },
       text = "Home",
       color = MaterialTheme.colorScheme.primary,
