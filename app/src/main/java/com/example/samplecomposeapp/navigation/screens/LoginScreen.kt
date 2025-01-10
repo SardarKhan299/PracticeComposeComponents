@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.navOptions
 import com.example.samplecomposeapp.navigation.AUTHENTICATION_ROUTE
 import com.example.samplecomposeapp.navigation.HOME_ROUTE
 import com.example.samplecomposeapp.navigation.Screen
@@ -38,7 +39,9 @@ fun LoginScreen(navController: NavController) {
       modifier = Modifier
         .padding(top = 150.dp)
         .clickable {
-          navController.navigate(HOME_ROUTE)
+          navController.navigate(HOME_ROUTE){
+            popUpTo(HOME_ROUTE)
+          }
         },
       text = "Back",
       color = MaterialTheme.colorScheme.primary,
