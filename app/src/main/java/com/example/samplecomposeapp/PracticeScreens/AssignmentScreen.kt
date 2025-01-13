@@ -37,6 +37,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
@@ -109,19 +110,41 @@ fun NotificationCard(notificationItem: NotificationItem,modifier: Modifier = Mod
         )
       }
 
-      Text(text = "This is a short Description",
-        color = Color.White,
-        fontSize = 20.sp,
-        modifier = Modifier
-          .fillMaxWidth(),
-        textAlign = TextAlign.Center
-      )
+      Row(modifier = Modifier
+        .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        Icon(
+          imageVector = Icons.Default.CheckCircle,
+          contentDescription = null,
+          tint = Color.White,
+          modifier = Modifier.alpha(0f)
+        )
+
+        Text(text = "This is a short Description",
+          color = Color.White,
+          fontSize = 20.sp,
+          modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f)
+        )
+        Icon(
+          imageVector = Icons.Default.MoreVert,
+          contentDescription = null,
+          tint = Color.White,
+          modifier = Modifier.rotate(90f)
+            .alpha(0f)
+        )
+      }
+
+
       Text(text = "Mar 5, 10:00",
         color = Color.White,
         fontSize = 24.sp,
         modifier = Modifier
           .fillMaxWidth()
-          .padding(top = 12.dp,
+          .padding(top = 8.dp,
             end = 8.dp),
         textAlign = TextAlign.End
       )
