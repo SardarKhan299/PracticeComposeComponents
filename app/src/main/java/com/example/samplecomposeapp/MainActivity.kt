@@ -25,11 +25,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.samplecomposeapp.list.repository.PersonRepository
-import com.example.samplecomposeapp.navigation.navgraph.SetupNavGraph
-import com.example.samplecomposeapp.textview.BoxPractice
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
+import com.example.samplecomposeapp.ui_practice.layouts.BoxPractice
+import com.example.samplecomposeapp.ui_practice.list.repository.PersonRepository
+import com.example.samplecomposeapp.ui_practice.navigation.navgraph.SetupNavGraph
 
 class MainActivity : ComponentActivity() {
 
