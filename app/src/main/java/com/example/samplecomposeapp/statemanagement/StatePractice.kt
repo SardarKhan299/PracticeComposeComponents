@@ -38,11 +38,13 @@ private const val BASE_URL = "https://...."
 // mutableListof() and
 
 @Composable
-fun StatePractice(modifier: Modifier = Modifier) {
+fun StatePractice(counter:Int,
+                  onCounterButtonClick: ()-> Unit,
+                  modifier: Modifier = Modifier) {
   // this can be used or served as a state..//
   // remember is used to cached the value across recomposition..//
   // and remember it can only be used in the context of composable functions..//
-  var count by remember { mutableIntStateOf(0) }
+  //var count by remember { mutableIntStateOf(0) }
 
   // remember saveable is used to cache the value when screen rotates..//
   var items by rememberSaveable {
@@ -59,9 +61,9 @@ fun StatePractice(modifier: Modifier = Modifier) {
   ){
 
     Button(onClick = {
-      count++
+   onCounterButtonClick.invoke()
     }) {
-      Text("Count is $count")
+      Text("Count is $counter")
     }
     Button(onClick = {
      items += "item"
@@ -81,6 +83,6 @@ fun StatePractice(modifier: Modifier = Modifier) {
 @Composable
 private fun StatePracticePreview() {
   SampleComposeAppTheme {
-    StatePractice()
+    StatePractice(counter = 0, {})
   }
 }
