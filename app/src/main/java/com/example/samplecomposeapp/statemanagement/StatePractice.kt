@@ -55,7 +55,7 @@ fun StatePractice(counter:Int,
   }
 
   Column (
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center
   ){
@@ -71,7 +71,7 @@ fun StatePractice(counter:Int,
       Text("Add Item..")
     }
     Text(text = items.toString(),
-     modifier = Modifier.align(Alignment.CenterHorizontally)
+     modifier = modifier.align(Alignment.CenterHorizontally)
 
     )
   }

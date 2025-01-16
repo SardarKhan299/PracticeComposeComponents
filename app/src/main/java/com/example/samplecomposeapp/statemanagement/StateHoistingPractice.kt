@@ -30,7 +30,7 @@ fun StateHoistingPractice(modifier: Modifier = Modifier) {
     mutableIntStateOf(0)
   }
   Column (
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.spacedBy(100.dp)
   ){
@@ -42,7 +42,7 @@ fun StateHoistingPractice(modifier: Modifier = Modifier) {
       StatePractice(counter = counter,
         onCounterButtonClick = {
         counter++
-      })
+      }, modifier = modifier)
 
   }
 
@@ -55,6 +55,9 @@ fun StateHoistingPractice(modifier: Modifier = Modifier) {
 @Composable
 private fun StateHoistingPrev() {
   SampleComposeAppTheme {
-    StateHoistingPractice()
+    StateHoistingPractice(modifier =  Modifier
+      .background(Color.Red)
+
+    )
   }
 }
