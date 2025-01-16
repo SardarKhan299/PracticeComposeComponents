@@ -6,10 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
-class NumberGuessViewModel(
-  private val test: String
-): ViewModel() {
+class NumberGuessViewModel: ViewModel() {
 
   // to save the state..//
 //  var screenState by mutableStateOf(NumberGuessState())
@@ -27,7 +26,10 @@ class NumberGuessViewModel(
 
      }
      is NumberGuessAction.OnNumberTextChange ->{
-
+       _state.update { it.copy(
+         numberText = action.newNumberText
+       )
+       }
      }
 
      NumberGuessAction.OnStartNewGameButton ->{

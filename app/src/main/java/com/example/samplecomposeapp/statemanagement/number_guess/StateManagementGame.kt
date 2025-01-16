@@ -12,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
@@ -56,6 +57,7 @@ fun StateManagementGame(state: NumberGuessState,
 @PreviewScreenSizes
 @PreviewLightDark
 @Composable
+@Preview(showBackground = true)
 private fun StateManagementGamePrev() {
   SampleComposeAppTheme {
   StateManagementGame(
