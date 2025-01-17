@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -27,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
+import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 import com.example.samplecomposeapp.ui_practice.layouts.BoxPractice
@@ -45,7 +47,10 @@ class MainActivity : ComponentActivity() {
       SampleComposeAppTheme {
 
         // To check Number Guess game..//
-        NumberGuessScreenRoot(Modifier.fillMaxSize())
+        //NumberGuessScreenRoot(Modifier.fillMaxSize())
+
+        // To check TodoList..//
+        TodoListScreenRoot(Modifier.fillMaxWidth())
 
         // for navigation..//
 //        navController = rememberNavController()
