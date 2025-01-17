@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,8 +22,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -159,13 +162,39 @@ fun CustomText(text: String) {
 }
 
 @Composable
+fun Test(modifier: Modifier = Modifier) {
+  val fontSize = 20
+  val baseHeight = 30
+
+  val adjustedHeight = when (fontSize) {
+    in 10..20 -> baseHeight * 1.2
+    in 21..30 -> baseHeight * 1.5
+    in 31..40 -> baseHeight * 2
+    in 41..50 -> baseHeight * 4
+    in 51..60 -> baseHeight * 4.5
+    in 61..70 -> baseHeight * 5.5
+    else -> baseHeight * 5.5
+  }
+  Button(
+    modifier = modifier
+      .height(adjustedHeight.toInt().dp),
+    onClick = {  },
+    shape = RectangleShape,
+    contentPadding = PaddingValues(vertical = 0.dp)
+  ) {
+    Text(text = "Some Text", fontSize = fontSize.sp)
+  }
+
+}
+
+@Composable
 fun ColumnScope.CustomItem(weight: Float, color: Color) {
   Surface(
     modifier = Modifier
-        .padding(12.dp)
-        .width(300.dp)
-        .height(50.dp)
-        .weight(weight),
+      .padding(12.dp)
+      .width(300.dp)
+      .height(50.dp)
+      .weight(weight),
     color = color
   ) {
     CustomText("Sardar")
@@ -189,8 +218,9 @@ fun GreetingPreview() {
 //
 //
 //        }
+    Test()
 
-    BoxPractice()
+    //BoxPractice()
 
   }
 }

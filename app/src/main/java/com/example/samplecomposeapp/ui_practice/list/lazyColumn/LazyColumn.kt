@@ -24,7 +24,6 @@ fun CustomLazyColumn(modifier: Modifier = Modifier, list: List<Person>) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(8.dp)
     ) {
-
         items(list, key = { it.id }) { person ->
             CustomItem(person)
         }

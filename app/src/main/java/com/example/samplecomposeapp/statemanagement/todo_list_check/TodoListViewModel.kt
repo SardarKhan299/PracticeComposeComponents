@@ -8,18 +8,36 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class TodoListViewModel: ViewModel() {
-  private val _state = MutableStateFlow(TodoListState())
+
+  private val _state = MutableStateFlow(
+    listOf(
+      TodoListState("1","Test", "Test Desc", false ,   false),
+      TodoListState("2","Test1", "Test1 Desc", false ,   false),
+      TodoListState("3","Test2", "Test2 Desc", false ,   false)
+    )
+  )
   val state = _state.asStateFlow()
+
+  val listOfItem: List<TodoListState>
+    get() = _state.value
+
 
   fun onAction(action: TodoListActions){
     when(action){
-      TodoListActions.OnCheckedClick -> {
-        Log.d(TodoListState::class.simpleName, ": Checked Clicked...${_state.value.isChecked}")
-        _state.update { it.copy(
-            isChecked = !_state.value.isChecked
-          )
+
+      is TodoListActions.OnCheckedClick -> {
+        val updatedList = listOfItem.map { item ->
+          if (item.id == action.id) {
+            item.copy(isChecked = !item.isChecked)
+          } else item
         }
+        _state.value = updatedList
       }
+      is TodoListActions.OnDeleteClick -> {
+        val updatedList = listOfItem.filter { it.id != action.id }
+        _state.value = updatedList
+      }
+
     }
   }
 
