@@ -6,6 +6,7 @@ import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessStat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.util.UUID
 
 class TodoListViewModel: ViewModel() {
 
@@ -36,6 +37,17 @@ class TodoListViewModel: ViewModel() {
       is TodoListActions.OnDeleteClick -> {
         val updatedList = listOfItem.filter { it.id != action.id }
         _state.value = updatedList
+      }
+
+      is TodoListActions.OnAddItemClicked -> {
+        val newItem = TodoListState(
+          id = UUID.randomUUID().toString(),
+          title = action.title,
+          description = action.desc,
+          isChecked = false,
+          isDeleted = false
+        )
+        _state.value = listOfItem + newItem
       }
 
     }

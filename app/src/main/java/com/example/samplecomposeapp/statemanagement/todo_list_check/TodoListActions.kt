@@ -5,4 +5,5 @@ import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessActi
 sealed interface TodoListActions {
   data class OnCheckedClick(val id: String): TodoListActions
   data class OnDeleteClick(val id: String): TodoListActions
+  data class OnAddItemClicked(val title: String,val desc: String): TodoListActions
 }

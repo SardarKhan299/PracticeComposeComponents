@@ -1,7 +1,9 @@
 package com.example.samplecomposeapp.statemanagement.todo_list_check
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,17 +12,30 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -50,18 +65,20 @@ fun TodoListScreenRoot(modifier: Modifier = Modifier) {
 fun TodoListScreen(modifier: Modifier = Modifier,
                    onAction: (TodoListActions)-> Unit,
                    list: List<TodoListState>) {
-
+Column {
   LazyColumn(
-    modifier = modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize()
+      .weight(1f),
     verticalArrangement = Arrangement.spacedBy(8.dp),
     contentPadding = PaddingValues(8.dp)
   ) {
     Log.d(TodoListState::class.simpleName, ": ");
-      items(list) {item ->
-      TodoListItem(modifier,item, onAction)
+    items(list) { item ->
+      TodoListItem(modifier, item, onAction)
     }
-
   }
+  AddTodoItem(modifier, onAction)
+}
 }
 
 @Composable
@@ -82,13 +99,13 @@ fun TodoListItem(modifier: Modifier = Modifier,
       verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
     ) {
       Text(
-        text = "Bring out the trash",
+        text = state.title,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         textDecoration = if (state.isChecked) TextDecoration.LineThrough else TextDecoration.None
       )
       Text(
-        text = "Better do this before wife comes home.",
+        text = state.description,
         fontWeight = FontWeight.Normal,
         fontSize = 18.sp,
         textDecoration = if (state.isChecked) TextDecoration.LineThrough else TextDecoration.None
@@ -113,6 +130,59 @@ fun TodoListItem(modifier: Modifier = Modifier,
   }
   
 }
+
+@Composable
+fun AddTodoItem(modifier: Modifier = Modifier,
+                onAction: (TodoListActions) -> Unit) {
+  Row(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(8.dp)
+      .background(Color.Black),
+    horizontalArrangement = Arrangement.Start,
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    var title by remember { mutableStateOf("Enter Title") }
+    var desc by remember { mutableStateOf("Enter Desc") }
+    Column(
+      modifier = Modifier.weight(1f),
+      horizontalAlignment = Alignment.Start,
+      verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
+    ) {
+      TextField(value = title,
+        onValueChange = { newText ->
+          title = newText
+        },
+        readOnly = false,
+        singleLine = true,
+        maxLines = 1
+
+      )
+
+      TextField(value = desc,
+        onValueChange = { newText ->
+          desc = newText
+        },
+        readOnly = false,
+        singleLine = false
+      )
+
+    }
+    Button(
+      modifier = modifier,
+      onClick = {
+        onAction(TodoListActions.OnAddItemClicked(title = title,
+          desc = desc))
+        title = ""
+        desc = ""
+      }
+    ) {
+        Text(text = "Add")
+      }
+    }
+
+  }
+
 
 @Preview(showBackground = true)
 @Composable
