@@ -61,7 +61,7 @@ fun StateManagementGame(state: NumberGuessState,
 private fun StateManagementGamePrev() {
   SampleComposeAppTheme {
   StateManagementGame(
-    state = NumberGuessState(numberText = "12345",
+    state = NumberGuessState(numberText = "",
       guessText = "",
       isGuessCorrect = false
       ),

@@ -21,11 +21,10 @@ class NumberGuessViewModel: ViewModel() {
 
   fun onAction(action: NumberGuessAction) {
    when(action){
-
      NumberGuessAction.OnGuessClick ->{
 
      }
-     is NumberGuessAction.OnNumberTextChange ->{
+     is NumberGuessAction.OnNumberTextChange -> {
        _state.update { it.copy(
          numberText = action.newNumberText
        )

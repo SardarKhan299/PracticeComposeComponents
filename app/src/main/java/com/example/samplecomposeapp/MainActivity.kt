@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,6 +26,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 import com.example.samplecomposeapp.ui_practice.layouts.BoxPractice
@@ -42,19 +44,22 @@ class MainActivity : ComponentActivity() {
     setContent {
       SampleComposeAppTheme {
 
+        // To check Number Guess game..//
+        NumberGuessScreenRoot(Modifier.fillMaxSize())
+
         // for navigation..//
-        navController = rememberNavController()
-        SetupNavGraph(
-          navController = navController
-        )
+//        navController = rememberNavController()
+//        SetupNavGraph(
+//          navController = navController
+//        )
 
         // For Observe Internet Connectivity...//
-        val viewmodel = viewModel<ConnectivityViewModel> {
-          ConnectivityViewModel(
-            connectivityObserver = AndroidConnectivityObserver(applicationContext)
-          )
-        }
-        val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
+//        val viewmodel = viewModel<ConnectivityViewModel> {
+//          ConnectivityViewModel(
+//            connectivityObserver = AndroidConnectivityObserver(applicationContext)
+//          )
+//        }
+//        val isConnected by viewmodel.isConnected.collectAsStateWithLifecycle()
 
         val personRepository = PersonRepository()
         val getAllData = personRepository.getAllData()
