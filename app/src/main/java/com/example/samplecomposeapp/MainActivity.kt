@@ -54,10 +54,10 @@ class MainActivity : ComponentActivity() {
         //NumberGuessScreenRoot(Modifier.fillMaxSize())
 
         // To check TodoList..//
-        //TodoListScreenRoot(Modifier.fillMaxWidth())
+        TodoListScreenRoot(Modifier.fillMaxWidth())
 
         // To check Modifier..//
-        SpacingModifierPractice()
+        //SpacingModifierPractice()
 
         // for navigation..//
 //        navController = rememberNavController()
