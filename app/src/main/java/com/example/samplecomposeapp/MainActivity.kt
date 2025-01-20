@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
 
 
         // for checking the state of network connection..//
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                 old(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Box(
 //                        modifier = Modifier
 //                            .fillMaxSize()
