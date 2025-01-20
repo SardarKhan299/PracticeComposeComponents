@@ -30,6 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
@@ -53,7 +54,10 @@ class MainActivity : ComponentActivity() {
         //NumberGuessScreenRoot(Modifier.fillMaxSize())
 
         // To check TodoList..//
-        TodoListScreenRoot(Modifier.fillMaxWidth())
+        //TodoListScreenRoot(Modifier.fillMaxWidth())
+
+        // To check Modifier..//
+        SpacingModifierPractice()
 
         // for navigation..//
 //        navController = rememberNavController()
