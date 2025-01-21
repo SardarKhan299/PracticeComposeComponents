@@ -2,6 +2,7 @@ package com.example.samplecomposeapp.modifiers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -102,10 +103,63 @@ fun FocusManagementPractice(modifier: Modifier = Modifier) {
       }
     )
 
+    // Focus Group..//
+    Column (
+      modifier = Modifier.fillMaxWidth()
+        .border(
+          width = 4.dp,
+          color = if(isFocused) Color.Red else Color.Green
+        )
+        .onFocusChanged {
+          isFocused = it.hasFocus
+        }
+        .padding(top = 16.dp, bottom = 16.dp)
+        .focusGroup(),
+      verticalArrangement = Arrangement.spacedBy(16.dp),
+      horizontalAlignment = Alignment.CenterHorizontally
+    ){
+      TextField(
+        value = "",
+        onValueChange = {
+
+        },
+        modifier = Modifier
+          .focusRequester(focusRequester),
+        keyboardActions = KeyboardActions(
+          onNext = {
+            focusManager.moveFocus(FocusDirection.Down)
+          }
+        ),
+        keyboardOptions = KeyboardOptions(
+          imeAction = ImeAction.Next
+        )
+      )
+      TextField(
+        value = "",
+        onValueChange = {
+
+        },
+        keyboardActions = KeyboardActions(
+          onNext = {
+            focusManager.moveFocus(FocusDirection.Down)
+          }
+        ),
+        keyboardOptions = KeyboardOptions(
+          imeAction = ImeAction.Next
+        )
+      )
+    }
+
     Button(onClick = {
       focusRequester.requestFocus()
     }) {
       Text(text = "Start Filling The Form")
+    }
+
+    Button(onClick = {
+      focusManager.clearFocus()
+    }) {
+      Text(text = "Clear Focus")
     }
   }
 
