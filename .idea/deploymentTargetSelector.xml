@@ -4,28 +4,28 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-12-04T12:47:45.151298Z">
+        <DropdownSelection timestamp="2024-12-18T11:46:31.227813Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sardarkhan/.android/avd/Pixel_3a_API_35_extension_level_13_arm64-v8a.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sardarkhan/.android/avd/Pixel_XL_API_33.avd" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="MyPreview">
+      <SelectionState runConfigName="StateHoistingPrev">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TextFieldPreview">
+      <SelectionState runConfigName="StateManagementGamePrev">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="GoogleButtonPreview">
+      <SelectionState runConfigName="TodoListScreenPrev">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="CoilImageLoadingPreview">
+      <SelectionState runConfigName="ClickableModifierPracticePrev">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="CoilImageLoadingPreview (1)">
+      <SelectionState runConfigName="FocusManagementPracticePrev">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

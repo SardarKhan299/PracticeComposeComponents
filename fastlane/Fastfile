@@ -1,0 +1,37 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Build and upload APK to Firebase App Distribution"
+  lane :release do
+    # Build APK (optional, if you haven't already built it)
+    gradle(
+      task: "assemble",
+      build_type: "Release"
+    )
+
+    # Upload the APK to Firebase App Distribution
+    release = firebase_app_distribution(
+      app: "1:770513751971:android:629b84357dbb33ac069416",         # Your Firebase app ID
+      firebase_cli_token: "your_firebase_cli_token",  # Your Firebase CLI token
+      service_credentials_file: "/Users/sardarkhan/Downloads",
+      groups: "tester",              # The group(s) of testers you want to distribute to
+      apk_path: "./app/build/outputs/apk/release/app-release.apk",  # Path to the APK
+      release_notes: "This is a release note for the new build."   # Release notes (optional)
+    )
+  end
+end
