@@ -37,6 +37,7 @@ import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 import com.example.samplecomposeapp.ui_practice.layouts.BoxPractice
 import com.example.samplecomposeapp.ui_practice.list.repository.PersonRepository
+import com.example.samplecomposeapp.ui_practice.navigation.bottom_nav.MainScreen
 import com.example.samplecomposeapp.ui_practice.navigation.navgraph.SetupNavGraph
 
 class MainActivity : ComponentActivity() {
@@ -64,6 +65,9 @@ class MainActivity : ComponentActivity() {
 //        SetupNavGraph(
 //          navController = navController
 //        )
+
+        //Bottom Bar Navigation..//
+        MainScreen()
 
         // For Observe Internet Connectivity...//
 //        val viewmodel = viewModel<ConnectivityViewModel> {
