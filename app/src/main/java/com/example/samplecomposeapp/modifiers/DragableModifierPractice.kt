@@ -44,6 +44,8 @@ fun DragableModifierPractice(modifier: Modifier = Modifier) {
         .offset {
           currentOffset.round()
         }
+        // this is used for 2D dragging allows you to drag the component in any direction..//
+        // to use only in x or y direction you can use dragablle to drag in specified direction..//
         .draggable2D(
           state = rememberDraggable2DState {
             currentOffset = currentOffset.plus(it)
