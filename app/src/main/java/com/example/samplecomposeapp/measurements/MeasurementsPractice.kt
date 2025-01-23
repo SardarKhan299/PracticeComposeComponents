@@ -49,6 +49,7 @@ fun MeasurementsPractice(modifier: Modifier = Modifier) {
     modifier = Modifier
       .background(Color.Red)
       .padding(16.dp)
+      .padding(16.dp)
   ){
     Text("This is a text ",
       modifier = Modifier
