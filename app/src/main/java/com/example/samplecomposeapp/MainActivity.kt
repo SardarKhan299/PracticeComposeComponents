@@ -37,6 +37,7 @@ import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScre
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 import com.example.samplecomposeapp.ui.theme.Typography
 import com.example.samplecomposeapp.ui_practice.layouts.BoxPractice
+import com.example.samplecomposeapp.ui_practice.list.lazyColumn.NestedScrolling
 import com.example.samplecomposeapp.ui_practice.list.repository.PersonRepository
 import com.example.samplecomposeapp.ui_practice.navigation.bottom_nav.MainScreen
 import com.example.samplecomposeapp.ui_practice.navigation.navgraph.SetupNavGraph
@@ -71,7 +72,10 @@ class MainActivity : ComponentActivity() {
         //MainScreen()
 
         //Bottom Bar Navigation..//
-        SizeModifierPractice()
+        //SizeModifierPractice()
+
+        //Nested Scrolling Issue..//
+        NestedScrolling()
 
         // For Observe Internet Connectivity...//
 //        val viewmodel = viewModel<ConnectivityViewModel> {
