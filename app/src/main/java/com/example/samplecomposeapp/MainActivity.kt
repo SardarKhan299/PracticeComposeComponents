@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -20,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -32,6 +34,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.samplecomposeapp.measurements.SizeModifierPractice
 import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
+import com.example.samplecomposeapp.side_effect.DisposableEffectDemo
+import com.example.samplecomposeapp.side_effect.SideEffectDemo
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
@@ -75,8 +79,29 @@ class MainActivity : ComponentActivity() {
         //SizeModifierPractice()
 
         //Nested Scrolling Issue..//
-        NestedScrolling()
+        //NestedScrolling()
 
+        //To test Side Effect Remember Coroutine Scope..//
+        //SideEffectDemo()
+var toggle by remember {
+  mutableStateOf(false)
+}
+        if(!toggle) {
+          //To test Side Effect Remember Coroutine Scope..//
+          DisposableEffectDemo()
+        }
+        Button(
+          onClick = {
+            toggle = !toggle
+          },
+          modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize()
+        ) {
+          Text(
+            text = "Toggle!"
+          )
+        }
         // For Observe Internet Connectivity...//
 //        val viewmodel = viewModel<ConnectivityViewModel> {
 //          ConnectivityViewModel(
