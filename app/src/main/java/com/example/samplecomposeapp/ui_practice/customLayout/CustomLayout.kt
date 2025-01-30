@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
+import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastMaxOfOrNull
@@ -17,27 +18,30 @@ import com.example.samplecomposeapp.CustomText
 import com.example.samplecomposeapp.ui.theme.SampleComposeAppTheme
 
 @Composable
-fun CustomLayout(
+fun SubComposeCustomLayout(
   page:Int,
   modifier: Modifier = Modifier,
   content: @Composable () -> Unit
   ) {
-  Layout(
-    content = content,
+  SubcomposeLayout (
     modifier = modifier
   ){
-    measurables, constraints ->
-
-    val placeable = measurables.map {
-      it.measure(constraints)
-    }
+    constraints ->
 
     val pages = mutableListOf<List<Placeable>>()
     var currentPage = mutableListOf<Placeable>()
     var currentPageWidth = 0
 
-    placeable.forEach { placeable ->
+    val measurables = subcompose("content",content)
+
+    var i = 0
+
+    for(measurable in measurables){
+      val placeable = measurable.measure(constraints)
       if(currentPageWidth + placeable.width > constraints.maxWidth){
+        if(pages.size == page){
+          break
+        }
         pages.add(currentPage)
         currentPage = mutableListOf()
         currentPageWidth = 0
@@ -45,6 +49,8 @@ fun CustomLayout(
       currentPage.add(placeable)
       currentPageWidth += placeable.width
     }
+
+    println("We measured $i composables")
 
     if(currentPage.isNotEmpty()){
       pages.add(currentPage)
@@ -70,8 +76,8 @@ fun CustomLayout(
 @Composable
 private fun CustomLayoutPrev() {
   SampleComposeAppTheme {
-    CustomLayout(
-      page = 1
+    SubComposeCustomLayout(
+      page = 0
     ){
       Box(
         modifier = Modifier
