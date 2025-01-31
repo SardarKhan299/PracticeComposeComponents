@@ -14,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,13 +31,16 @@ import kotlinx.coroutines.launch
 fun DriveStateOf(modifier: Modifier = Modifier) {
   val state = rememberLazyListState()
 
-  var  showScrollToTopButton by remember {
-    mutableStateOf(false)
+  val  showScrollToTopButton by remember {
+   derivedStateOf {
+     state.firstVisibleItemIndex >=10
+   }
   }
 
-  LaunchedEffect(state.firstVisibleItemIndex) {
-    showScrollToTopButton = state.firstVisibleItemIndex >=10
-  }
+  // Performance vise its not a good practice...//
+//  LaunchedEffect(state.firstVisibleItemIndex) {
+//    showScrollToTopButton = state.firstVisibleItemIndex >=10
+//  }
 
   LazyColumn(
     state = state,
