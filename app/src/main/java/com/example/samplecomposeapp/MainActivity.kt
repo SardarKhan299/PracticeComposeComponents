@@ -35,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.samplecomposeapp.measurements.SizeModifierPractice
 import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
 import com.example.samplecomposeapp.side_effect.DisposableEffectDemo
+import com.example.samplecomposeapp.side_effect.DriveStateOf
 import com.example.samplecomposeapp.side_effect.SideEffectDemo
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
@@ -83,25 +84,35 @@ class MainActivity : ComponentActivity() {
 
         //To test Side Effect Remember Coroutine Scope..//
         //SideEffectDemo()
-var toggle by remember {
-  mutableStateOf(false)
-}
-        if(!toggle) {
-          //To test Side Effect Remember Coroutine Scope..//
-          DisposableEffectDemo()
-        }
-        Button(
-          onClick = {
-            toggle = !toggle
-          },
-          modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize()
-        ) {
-          Text(
-            text = "Toggle!"
-          )
-        }
+
+
+
+        // to test Disposable Effect of ..//
+//        var toggle by remember {
+//          mutableStateOf(false)
+//        }
+//        if(!toggle) {
+//          //To test Side Effect Remember Coroutine Scope..//
+//          DisposableEffectDemo()
+//        }
+//        Button(
+//          onClick = {
+//            toggle = !toggle
+//          },
+//          modifier = Modifier
+//            .fillMaxSize()
+//            .wrapContentSize()
+//        ) {
+//          Text(
+//            text = "Toggle!"
+//          )
+//        }
+
+
+        // To Test Drived State Of ...//
+        DriveStateOf()
+
+
         // For Observe Internet Connectivity...//
 //        val viewmodel = viewModel<ConnectivityViewModel> {
 //          ConnectivityViewModel(
