@@ -36,6 +36,7 @@ import com.example.samplecomposeapp.measurements.SizeModifierPractice
 import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
 import com.example.samplecomposeapp.side_effect.DisposableEffectDemo
 import com.example.samplecomposeapp.side_effect.DriveStateOf
+import com.example.samplecomposeapp.side_effect.RememberUpdateStatePractice
 import com.example.samplecomposeapp.side_effect.SideEffectDemo
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
@@ -110,7 +111,10 @@ class MainActivity : ComponentActivity() {
 
 
         // To Test Drived State Of ...//
-        DriveStateOf()
+        //DriveStateOf()
+
+        // TO Test Remember Update State..//
+        RememberUpdateStatePractice()
 
 
         // For Observe Internet Connectivity...//
