@@ -11,7 +11,7 @@ fun SnapShotFlowPractice(modifier: Modifier = Modifier) {
 }
 
 
-@@Preview
+@Preview
 @Composable
 private fun SnapShotFlowPracticePrev() {
   SampleComposeAppTheme {
