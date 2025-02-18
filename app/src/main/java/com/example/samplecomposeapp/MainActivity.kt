@@ -37,6 +37,7 @@ import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
 import com.example.samplecomposeapp.side_effect.DisposableEffectDemo
 import com.example.samplecomposeapp.side_effect.DriveStateOf
 import com.example.samplecomposeapp.side_effect.RememberUpdateStatePractice
+import com.example.samplecomposeapp.side_effect.SideEffectAssignment
 import com.example.samplecomposeapp.side_effect.SideEffectDemo
 import com.example.samplecomposeapp.statemanagement.number_guess.NumberGuessScreenRoot
 import com.example.samplecomposeapp.statemanagement.todo_list_check.TodoListScreenRoot
@@ -114,7 +115,10 @@ class MainActivity : ComponentActivity() {
         //DriveStateOf()
 
         // TO Test Remember Update State..//
-        RememberUpdateStatePractice()
+        //RememberUpdateStatePractice()
+
+        // TO Test assignment for SideEffect..//
+        SideEffectAssignment()
 
 
         // For Observe Internet Connectivity...//
