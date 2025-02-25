@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.samplecomposeapp.measurements.SizeModifierPractice
 import com.example.samplecomposeapp.modifiers.SpacingModifierPractice
+import com.example.samplecomposeapp.performance.ImageLoading
 import com.example.samplecomposeapp.side_effect.DisposableEffectDemo
 import com.example.samplecomposeapp.side_effect.DriveStateOf
 import com.example.samplecomposeapp.side_effect.RememberUpdateStatePractice
@@ -118,7 +119,11 @@ class MainActivity : ComponentActivity() {
         //RememberUpdateStatePractice()
 
         // TO Test assignment for SideEffect..//
-        SideEffectAssignment()
+        //SideEffectAssignment()
+
+
+        // TO Test Performance of Image Loading..//
+        ImageLoading()
 
 
         // For Observe Internet Connectivity...//
