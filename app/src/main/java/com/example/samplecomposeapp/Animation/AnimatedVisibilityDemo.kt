@@ -1,6 +1,14 @@
 package com.example.samplecomposeapp.Animation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Easing
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,7 +46,21 @@ fun AnimatedVisibilityDemo(modifier: Modifier = Modifier) {
       Text(text = "Toggle")
     }
 
-    AnimatedVisibility(visible = toggle) {
+    val easing = FastOutSlowInEasing
+    AnimatedVisibility(visible = toggle,
+      enter = scaleIn(
+        animationSpec = tween(
+          durationMillis = 3000,
+          delayMillis = 300,
+          easing = easing
+        )
+      ) + fadeIn(),
+      exit = scaleOut( animationSpec = tween(
+        durationMillis = 3000,
+        delayMillis = 300,
+        easing = easing
+      )) + fadeOut()
+    ) {
       Text(text = "Hello, World!",
         modifier = Modifier
           .fillMaxWidth()
