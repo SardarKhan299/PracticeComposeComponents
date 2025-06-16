@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
@@ -85,6 +86,11 @@ fun AnimatableApi(modifier: Modifier = Modifier) {
               y = ((size.height - 100.dp.roundToPx()) * step1IOffset.value).roundToInt()
             )
           }
+          .graphicsLayer {
+            val scale = 1 - (step2IOffset.value * 0.25f)
+            scaleX = scale
+            scaleY = scale
+          }
           .background(Color.Green)
       )
       Box(
@@ -96,6 +102,11 @@ fun AnimatableApi(modifier: Modifier = Modifier) {
               y = ((size.height - 100.dp.roundToPx()) * step2IOffset.value).roundToInt()
             )
           }
+          .graphicsLayer {
+            val scale = 1 - (step2IOffset.value * 0.25f)
+            scaleX = scale
+            scaleY = scale
+          }
           .background(Color.Blue)
       )
     }
@@ -103,6 +114,15 @@ fun AnimatableApi(modifier: Modifier = Modifier) {
     Button(onClick = {
       scope.launch {
         step1IOffset.animateTo(
+          targetValue = 1f,
+          animationSpec = tween(
+            durationMillis = 5000,
+            easing = EaseInOutCubic
+          )
+        )
+
+
+        step2IOffset.animateTo(
           targetValue = 1f,
           animationSpec = tween(
             durationMillis = 5000,
